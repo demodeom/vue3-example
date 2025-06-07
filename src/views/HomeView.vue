@@ -1,88 +1,58 @@
-<!--javascript 代码-->
 <script setup>
-/**
- * 复杂数据类型渲染：
- *
- * 1. 数组
- */
+import { ref } from 'vue'
 
-import { reactive } from 'vue'
-
-const jobs = reactive(['吃饭', '睡觉', '打豆豆'])
-
-const users = reactive([
-  {
-    id: '2020120101',
-    name: '用户1',
-    sex: '保密',
-  },
-  {
-    id: '2020120102',
-    name: '用户2',
-    sex: '男',
-  },
-  {
-    id: '2020120103',
-    name: '用户3',
-    sex: '女',
-  },
-])
+const userName = ref('')
+const userPassword = ref('')
+const userSex = ref('男')
+// const userHobby = ref("乒乓球")
+const userHobby = ref([])
 </script>
 
-<!--html 代码-->
 <template>
-  <ul>
-    <li v-for="(item, index) in jobs" v-bind:key="index">{{ index }} - {{ item }}</li>
-  </ul>
+  <form action="">
+    <label for="userName">用户名</label>
+    <input id="userName" type="text" v-model="userName" /><span>{{ userName }}</span>
+    <hr />
+    <label for="userName">密码</label>
+    <input id="userName" type="password" v-model="userPassword" /><span>{{ userPassword }}</span>
+    <hr />
 
-  <table>
-    <thead>
-      <tr>
-        <th>学号</th>
-        <th>姓名</th>
-        <th>性别</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(user, index) in users" v-bind:key="index">
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>{{ user.sex }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <hr>
-  <table>
-    <thead>
-      <tr>
-        <th>学号</th>
-        <th>姓名</th>
-        <th>性别</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(user, index) in users" v-bind:key="index">
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
+    <label for="userName">性别</label>
 
-        <td v-if="user.sex === '男'" style="color: blue">{{ user.sex }}</td>
-        <td v-else-if="user.sex === '女'" style="color: red">{{ user.sex }}</td>
-        <td v-else>{{ user.sex }}</td>
-      </tr>
-    </tbody>
-  </table>
+    <input v-model="userSex" value="男" type="radio" name="sex" id="sexMan" /><label for="sexMan"
+      >男</label
+    >
+    <input v-model="userSex" value="女" type="radio" name="sex" id="sexWoman" /><label
+      for="sexWoman"
+      >女</label
+    >
+    <input v-model="userSex" value="未知" type="radio" name="sex" id="sexUnknown" /><label
+      for="sexUnknown"
+      >未知</label
+    >
+    <br />
+    <span>性别： {{ userSex }}</span>
+    <hr />
+
+    <!--    <select v-model="userHobby" name="" id="">-->
+    <!--      <option value="乒乓球">乒乓球</option>-->
+    <!--      <option value="羽毛球">羽毛球</option>-->
+    <!--      <option value="足球">足球</option>-->
+    <!--    </select>-->
+
+    <!--    <span>{{ userHobby }}</span>-->
+    <!--    <hr>-->
+    多选框
+    <input v-model="userHobby" type="checkbox" name="userHobby" id="足球" value="足球" />
+    <label for="足球">足球</label>
+    <input v-model="userHobby" type="checkbox" name="userHobby" id="羽毛球" value="羽毛球" />
+    <label for="羽毛球">羽毛球</label>
+    <input v-model="userHobby" type="checkbox" name="userHobby" id="乒乓球" value="乒乓球" />
+    <label for="乒乓球">乒乓球</label>
+    <br />
+    <span>{{ userHobby }}</span>
+    <hr />
+  </form>
 </template>
 
-<!--css 代码-->
-<style scoped>
-table {
-  width: 800px;
-  text-align: center;
-  border-spacing: 0;
-}
-
-th,
-td {
-  border: 1px solid black;
-}
-</style>
+<style scoped></style>
